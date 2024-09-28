@@ -4,23 +4,35 @@ import * as jwt from 'jsonwebtoken';
 import {User} from "./interfaces/user.interface";
 import * as dotenv from 'dotenv';
 import {authenticateToken} from "./services/jwt.service";
+import * as cors from 'cors';
 
 dotenv.config();
 
 const app = express();
+app.use(cors())
 app.use(express.json())
 
 const posts: Post[] = [
     {
-        username: 'Kyle',
-        title: 'Post 1'
+        username: 'Thomas',
+        title: 'Maturaballkarten'
     },{
-        username: 'Kyle',
-        title: 'Post 2'
+        username: 'Thomas',
+        title: 'Mallorca Urlaub'
     },
     {
-        username: 'Jim',
-        title: 'Post 3'
+        username: 'Thomas',
+        title: 'Test Post'
+    },{
+        username: 'Lukas',
+        title: 'Drohnenflug für fortgeschrittene'
+    },{
+        username: 'Lukas',
+        title: 'Pfusch am Bau'
+    },
+    {
+        username: 'Lukas',
+        title: 'Golf Turnier'
     }
 ]
 
