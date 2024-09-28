@@ -4,11 +4,14 @@ import * as jwt from 'jsonwebtoken';
 import {User} from "./interfaces/user.interface";
 import * as dotenv from 'dotenv';
 import {authenticateToken, generateAccessToken} from "./services/jwt.service";
+import * as cors from 'cors';
 
 dotenv.config();
 
 const app = express();
+app.use(cors())
 app.use(express.json())
+
 
 let refreshTokens = [];
 
@@ -45,6 +48,8 @@ app.post('/login', (req, res) => {
     const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET);
     refreshTokens.push(refreshToken);
     res.json({ accessToken: accessToken, refreshToken: refreshToken});
+
+    console.log("New user named " + req.body.username);
 })
 
 
